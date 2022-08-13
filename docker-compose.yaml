@@ -1,6 +1,6 @@
 version: '3.3'
 services:
-  mongo-test-1:
+  mongo-test-1: &mongo
     container_name: mongo-test-1
     image: mongo:4.4.15
     tmpfs: /data/db
@@ -8,18 +8,14 @@ services:
     - "27017:27017"
     entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
   mongo-test-2:
+    <<: *mongo
     container_name: mongo-test-2
-    image: mongo:4.4.15
-    tmpfs: /data/db
     ports:
     - "27018:27017"
     volumes:
     - ./initdb-script:/initdb-script:Z
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
   mongo-test-3:
+    <<: *mongo
     container_name: mongo-test-3
-    image: mongo:4.4.15
-    tmpfs: /data/db
     ports:
     - "27019:27017"
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs" ]
