@@ -12,6 +12,8 @@ anchored_content: &anchor_name # This string will appear as the value of two key
 other_anchor: *anchor_name
 ```
 
+Medium: https://medium.com/@anasanjaria/code-reuse-in-docker-compose-using-yaml-anchor-feature-6cb2ff1d0427
+
 ## How to start local mongodb cluster?
 - Run the following command
 ```
@@ -19,7 +21,7 @@ docker-compose up -d
 ```
 - After 5s, run the following command to form cluster.
 ```
-docker exec mongo-test-1 /scripts/init.sh
+docker exec mongo-test-2 /initdb-script/init.sh
 ```
 
 ## Resources
